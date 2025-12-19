@@ -1,0 +1,44 @@
+{"timestamp": "2025-12-19 19:01:45.682575", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:02:51.000707", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:02:51.001307", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:02:51.001683", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:05:13.231695", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:05:13.232231", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:05:13.232624", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:05:13.232867", "event": "TOOL_EXECUTED", "tool": "check_insurance_eligibility", "result": {"patient_id": "PAT123", "service_type": "Cardiology", "eligible": true, "provider": "ABC Health Insurance"}}
+{"timestamp": "2025-12-19 19:05:13.233083", "event": "TOOL_SELECTED", "tool": "find_available_slots", "arguments": {"department": "Cardiology", "start_date": "2025-01-20", "end_date": "2025-01-27"}}
+{"timestamp": "2025-12-19 19:05:13.233298", "event": "TOOL_EXECUTED", "tool": "find_available_slots", "result": [{"slot_id": "SLOT123", "department": "Cardiology", "date": "2025-01-22", "time": "10:00 AM"}]}
+{"timestamp": "2025-12-19 19:05:13.233533", "event": "TOOL_SELECTED", "tool": "book_appointment", "arguments": {"patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology"}}
+{"timestamp": "2025-12-19 19:05:13.233746", "event": "TOOL_EXECUTED", "tool": "book_appointment", "result": {"appointment_id": "APT456", "patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology", "status": "CONFIRMED"}}
+{"timestamp": "2025-12-19 19:07:17.915452", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:07:17.915955", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:07:17.916402", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:17.916664", "event": "TOOL_EXECUTED", "tool": "check_insurance_eligibility", "result": {"patient_id": "PAT123", "service_type": "Cardiology", "eligible": true, "provider": "ABC Health Insurance"}}
+{"timestamp": "2025-12-19 19:07:17.916888", "event": "TOOL_SELECTED", "tool": "find_available_slots", "arguments": {"department": "Cardiology", "start_date": "2025-01-20", "end_date": "2025-01-27"}}
+{"timestamp": "2025-12-19 19:07:17.917096", "event": "TOOL_EXECUTED", "tool": "find_available_slots", "result": [{"slot_id": "SLOT123", "department": "Cardiology", "date": "2025-01-22", "time": "10:00 AM"}]}
+{"timestamp": "2025-12-19 19:07:17.917301", "event": "TOOL_SELECTED", "tool": "book_appointment", "arguments": {"patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:17.917486", "event": "TOOL_EXECUTED", "tool": "book_appointment", "result": {"appointment_id": "APT456", "patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology", "status": "CONFIRMED"}}
+{"timestamp": "2025-12-19 19:07:26.129340", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:07:26.129891", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:07:26.130309", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:26.130778", "event": "TOOL_EXECUTED", "tool": "check_insurance_eligibility", "result": {"patient_id": "PAT123", "service_type": "Cardiology", "eligible": true, "provider": "ABC Health Insurance"}}
+{"timestamp": "2025-12-19 19:07:26.131049", "event": "TOOL_SELECTED", "tool": "find_available_slots", "arguments": {"department": "Cardiology", "start_date": "2025-01-20", "end_date": "2025-01-27"}}
+{"timestamp": "2025-12-19 19:07:26.131287", "event": "TOOL_EXECUTED", "tool": "find_available_slots", "result": [{"slot_id": "SLOT123", "department": "Cardiology", "date": "2025-01-22", "time": "10:00 AM"}]}
+{"timestamp": "2025-12-19 19:07:26.131526", "event": "TOOL_SELECTED", "tool": "book_appointment", "arguments": {"patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:26.131759", "event": "TOOL_EXECUTED", "tool": "book_appointment", "result": {"appointment_id": "APT456", "patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology", "status": "CONFIRMED"}}
+{"timestamp": "2025-12-19 19:07:41.454285", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:07:41.454938", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:07:41.455319", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:41.455640", "event": "TOOL_EXECUTED", "tool": "check_insurance_eligibility", "result": {"patient_id": "PAT123", "service_type": "Cardiology", "eligible": true, "provider": "ABC Health Insurance"}}
+{"timestamp": "2025-12-19 19:07:41.455926", "event": "TOOL_SELECTED", "tool": "find_available_slots", "arguments": {"department": "Cardiology", "start_date": "2025-01-20", "end_date": "2025-01-27"}}
+{"timestamp": "2025-12-19 19:07:41.456186", "event": "TOOL_EXECUTED", "tool": "find_available_slots", "result": [{"slot_id": "SLOT123", "department": "Cardiology", "date": "2025-01-22", "time": "10:00 AM"}]}
+{"timestamp": "2025-12-19 19:07:41.456465", "event": "TOOL_SELECTED", "tool": "book_appointment", "arguments": {"patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology"}}
+{"timestamp": "2025-12-19 19:07:41.456718", "event": "TOOL_EXECUTED", "tool": "book_appointment", "result": {"appointment_id": "APT456", "patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology", "status": "CONFIRMED"}}
+{"timestamp": "2025-12-19 19:08:59.590311", "event": "TOOL_SELECTED", "tool": "search_patient", "arguments": {"name": "Ravi Kumar"}}
+{"timestamp": "2025-12-19 19:08:59.590488", "event": "TOOL_EXECUTED", "tool": "search_patient", "result": {"patient_id": "PAT123", "name": "Ravi Kumar", "dob": null, "status": "FOUND"}}
+{"timestamp": "2025-12-19 19:08:59.590708", "event": "TOOL_SELECTED", "tool": "check_insurance_eligibility", "arguments": {"patient_id": "PAT123", "service_type": "Cardiology"}}
+{"timestamp": "2025-12-19 19:08:59.590753", "event": "TOOL_EXECUTED", "tool": "check_insurance_eligibility", "result": {"patient_id": "PAT123", "service_type": "Cardiology", "eligible": true, "provider": "ABC Health Insurance"}}
+{"timestamp": "2025-12-19 19:08:59.590793", "event": "TOOL_SELECTED", "tool": "find_available_slots", "arguments": {"department": "Cardiology", "start_date": "2025-01-20", "end_date": "2025-01-27"}}
+{"timestamp": "2025-12-19 19:08:59.590832", "event": "TOOL_EXECUTED", "tool": "find_available_slots", "result": [{"slot_id": "SLOT123", "department": "Cardiology", "date": "2025-01-22", "time": "10:00 AM"}]}
+{"timestamp": "2025-12-19 19:08:59.590870", "event": "TOOL_SELECTED", "tool": "book_appointment", "arguments": {"patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology"}}
+{"timestamp": "2025-12-19 19:08:59.590908", "event": "TOOL_EXECUTED", "tool": "book_appointment", "result": {"appointment_id": "APT456", "patient_id": "PAT123", "slot_id": "SLOT123", "department": "Cardiology", "status": "CONFIRMED"}}
