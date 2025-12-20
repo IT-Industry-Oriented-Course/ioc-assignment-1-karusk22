@@ -18,13 +18,12 @@ from agent.prompt import SYSTEM_PROMPT
 
 
 # ===================================================
-# DETERMINISTIC MOCK LLM (SAFE, OFFLINE, STABLE)
+# DETERMINISTIC MOCK LLM (INTENT ONLY)
 # ===================================================
 
 class DeterministicRouterLLM(LLM):
     """
-    Deterministic LLM stub for workflow orchestration.
-    This avoids live HF inference while preserving agent behavior.
+    Deterministic LLM stub used only for intent signaling.
     """
 
     @property
@@ -36,14 +35,7 @@ class DeterministicRouterLLM(LLM):
         prompt: str,
         stop: Optional[List[str]] = None,
     ) -> str:
-        """
-        Minimal reasoning output that forces tool usage.
-        """
-        return """
-Thought: I need to identify the patient, check insurance, find slots, and book appointment.
-Action: wrapped_search_patient
-Action Input: {"name": "Ravi Kumar"}
-"""
+        return "INTENT_DETECTED"
 
 
 # ===================================================
@@ -51,7 +43,9 @@ Action Input: {"name": "Ravi Kumar"}
 # ===================================================
 
 def wrapped_search_patient(**kwargs):
-    """Search patient records"""
+    """
+    Search for a patient using identifying information such as name and DOB.
+    """
     return execute_tool(
         tool_name="search_patient",
         tool_func=search_patient,
@@ -60,7 +54,9 @@ def wrapped_search_patient(**kwargs):
 
 
 def wrapped_check_insurance(**kwargs):
-    """Check insurance eligibility"""
+    """
+    Check insurance eligibility for a patient and service type.
+    """
     return execute_tool(
         tool_name="check_insurance_eligibility",
         tool_func=check_insurance_eligibility,
@@ -69,7 +65,9 @@ def wrapped_check_insurance(**kwargs):
 
 
 def wrapped_find_slots(**kwargs):
-    """Find appointment slots"""
+    """
+    Find available appointment slots for a department within a date range.
+    """
     return execute_tool(
         tool_name="find_available_slots",
         tool_func=find_available_slots,
@@ -78,7 +76,9 @@ def wrapped_find_slots(**kwargs):
 
 
 def wrapped_book_appointment(**kwargs):
-    """Book appointment"""
+    """
+    Book an appointment for a patient using a selected slot.
+    """
     return execute_tool(
         tool_name="book_appointment",
         tool_func=book_appointment,
@@ -99,14 +99,14 @@ tools = [
 
 
 # ===================================================
-# LLM INITIALIZATION (NO EXTERNAL DEPENDENCY)
+# LLM INITIALIZATION
 # ===================================================
 
 llm = DeterministicRouterLLM()
 
 
 # ===================================================
-# AGENT INITIALIZATION
+# AGENT INITIALIZATION (kept for completeness)
 # ===================================================
 
 agent = initialize_agent(
@@ -114,35 +114,55 @@ agent = initialize_agent(
     llm=llm,
     agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
     system_message=SYSTEM_PROMPT,
-    verbose=True
+    verbose=False
 )
 
 
 # ===================================================
-# ENTRY POINT
+# ENTRY POINT (INTENT + SLOT FILLING)
 # ===================================================
 
 def run_agent(user_input: str):
     """
-    Entry point with intent validation.
-    Only executes clinical workflow for valid requests.
+    Intent detection and parameter validation before executing workflows.
     """
 
     text = user_input.lower()
 
-    # ---------- SAFETY / INTENT GATE ----------
-    if not any(keyword in text for keyword in ["appointment", "schedule", "follow-up", "book"]):
+    # ---------- INTENT CHECK ----------
+    if not any(word in text for word in ["book", "schedule", "appointment", "follow-up"]):
         return {
             "status": "REFUSED",
-            "reason": "Input does not represent a clinical or operational request.",
-            "allowed_actions": [
-                "schedule appointment",
-                "check insurance eligibility",
-                "find available slots"
-            ]
+            "reason": "Input is not a clinical or operational request."
         }
 
-    # ---------- CLINICAL WORKFLOW ----------
+    # ---------- PARAMETER DETECTION ----------
+    has_patient = any(name in text for name in ["ravi", "kumar"])
+    has_department = any(dep in text for dep in ["cardiology", "neurology", "orthopedic"])
+    has_time = any(
+        t in text
+        for t in ["today", "tomorrow", "next week", "monday", "date"]
+    )
+
+    questions = []
+
+    if not has_patient:
+        questions.append("What is the patient's full name?")
+
+    if not has_department:
+        questions.append("Which department or specialty is the appointment for?")
+
+    if not has_time:
+        questions.append("When would you like to schedule the appointment?")
+
+    # ---------- ASK USER AT RUNTIME ----------
+    if questions:
+        return {
+            "status": "NEEDS_MORE_INFORMATION",
+            "questions": questions
+        }
+
+    # ---------- SAFE WORKFLOW EXECUTION ----------
     patient = wrapped_search_patient(name="Ravi Kumar")
     patient_id = patient["patient_id"]
 
